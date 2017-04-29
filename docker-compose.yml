@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  jessie:
+    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-jessie"
+    build:
+      context: "."
+      dockerfile: "Dockerfile-jessie"
+
+  xenial:
+    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-xenial"
+    build:
+      context: "."
+      dockerfile: "Dockerfile-xenial"
