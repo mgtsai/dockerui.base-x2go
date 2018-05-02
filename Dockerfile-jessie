@@ -3,17 +3,15 @@ FROM debian:jessie
 RUN apt-key adv --recv-keys --keyserver keys.gnupg.net E1F958385BFE2B6E && \
     echo "deb http://deb.debian.org/debian/ jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list && \
     echo "deb http://packages.x2go.org/debian jessie main" > /etc/apt/sources.list.d/x2go.list && \
-    apt-get update && \
-    apt-get install -q -y x2go-keyring && \
-    apt-get install -q -y openssh-server gosu x2goserver=4.0.1.20-0x2go1+git20170412.1125+8.main.1 x2goclient=4.1.0.0-0x2go1+git20170413.1549+8.main.1
+    apt-get update && apt-get install -y -q openssh-server gosu && \
+    echo X11UseLocalhost no >> /etc/ssh/sshd_config
 
-RUN apt-get update && \
-    apt-get install -q -y python3-pip && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2go-keyring x2goserver=4.1.0.0-0x2go1.2+git20180302.1517+8.main.1 x2goclient=4.1.1.1-0x2go1+git20180302.1732+8.main.1
+
+RUN apt-get update && apt-get install -y -q python3-pip && \
     pip3 install namedlist
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 RUN mkdir -p /tmp/.X11-unix && \
     chmod 1777 /tmp/.X11-unix

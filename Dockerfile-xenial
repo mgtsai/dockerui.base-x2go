@@ -1,18 +1,16 @@
 FROM ubuntu:16.04
 
-RUN apt-get update && \
-    apt-get install -q -y software-properties-common && \
+RUN apt-get update && apt-get install -y -q software-properties-common && \
     add-apt-repository ppa:x2go/stable && \
-    apt-get update && \
-    apt-get install -q -y openssh-server gosu x2goserver=4.0.1.20-0~1125~ubuntu16.04.1 x2goclient=4.1.0.0-0~1536~ubuntu16.04.1
+    apt-get update && apt-get install -y -q openssh-server gosu && \
+    echo X11UseLocalhost no >> /etc/ssh/sshd_config
 
-RUN apt-get update && \
-    apt-get install -q -y python3-pip && \
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2goserver=4.1.0.0-0~1517~ubuntu16.04.1 x2goclient=4.1.1.1-0~1719~ubuntu16.04.1
+
+RUN apt-get update && apt-get install -y -q python3-pip && \
     pip3 install namedlist
 
-RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -rf /tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 RUN mkdir -p /tmp/.X11-unix && \
     chmod 1777 /tmp/.X11-unix
