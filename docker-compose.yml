@@ -1,14 +1,20 @@
 version: "3"
 
 services:
-  jessie:
-    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-jessie"
+  stretch:
+    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-stretch"
     build:
       context: "."
-      dockerfile: "Dockerfile-jessie"
+      dockerfile: "Dockerfile-stretch"
 
   xenial:
     image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-xenial"
     build:
       context: "."
       dockerfile: "Dockerfile-xenial"
+
+  bionic:
+    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-bionic"
+    build:
+      context: "."
+      dockerfile: "Dockerfile-bionic"

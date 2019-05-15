@@ -1,11 +1,11 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN apt-get update && apt-get install -y -q openssh-server gosu && \
     echo X11UseLocalhost no >> /etc/ssh/sshd_config
 
 RUN apt-get update && apt-get install -y -q software-properties-common && \
     add-apt-repository ppa:x2go/stable && \
-    apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2goserver=4.1.0.3-0~1708~ubuntu16.04.1 x2goclient=4.1.2.1-0~1788~ubuntu16.04.1
+    apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2goserver=4.1.0.3-0~1708~ubuntu18.04.1 x2goclient=4.1.2.1-0~1788~ubuntu18.04.1
 
 RUN apt-get update && apt-get install -y -q python3-pip && \
     pip3 install namedlist
