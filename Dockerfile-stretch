@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y -q openssh-server gosu gnupg2 && \
 
 RUN echo "deb http://packages.x2go.org/debian stretch main" > /etc/apt/sources.list.d/x2go.list && \
     apt-key adv --recv-keys --keyserver keys.gnupg.net E1F958385BFE2B6E && \
-    apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2go-keyring x2goserver=4.1.0.3-0x2go1+git20181129.1708+9.main.1 x2goclient=4.1.2.1-0x2go1+git20180626.1801+9.main.1
+    apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2go-keyring x2goserver=4.1.0.3-0x2go1+git20191115.1708+9.main.1 x2goclient=4.1.2.2-0x2go1+git20200213.1926+9.main.1
 
 RUN apt-get update && apt-get install -y -q python3-pip && \
     pip3 install namedlist

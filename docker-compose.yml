@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  stretch:
-    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-stretch"
-    build:
-      context: "."
-      dockerfile: "Dockerfile-stretch"
+  #stretch:
+  #  image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-stretch"
+  #  build:
+  #    context: "."
+  #    dockerfile: "Dockerfile-stretch"
 
   xenial:
     image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-xenial"
