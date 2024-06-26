@@ -1,0 +1,28 @@
+FROM ubuntu:24.04
+
+RUN apt-get update && apt-get install -y -q openssh-server gosu && \
+    echo X11UseLocalhost no >> /etc/ssh/sshd_config
+
+RUN apt-get update && apt-get install -y -q software-properties-common && \
+    add-apt-repository ppa:x2go/stable && \
+    apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q x2goserver=4.1.0.6-1.1build1 x2goclient=4.1.2.3-1build3
+
+RUN apt-get update && apt-get install -y -q python3-pip && \
+    pip3 install --break-system-packages namedlist
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
+
+RUN mkdir -p /tmp/.X11-unix && \
+    chmod 1777 /tmp/.X11-unix
+
+ENV GUEST_USER=user \
+    GUEST_UID=9001 \
+    GUEST_GROUP=user \
+    GUEST_GID=9001 \
+    X2GO_DPI=72 \
+    DISPLAY=:1
+
+ADD common/ debian-series/ /docker/
+RUN chmod a+x /docker/*
+EXPOSE 22
+ENTRYPOINT ["/docker/entrypoint.sh"]

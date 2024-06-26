@@ -18,3 +18,9 @@ services:
     build:
       context: "."
       dockerfile: "Dockerfile-bionic"
+
+  noble:
+    image: "mgtsai/dockerui.base-x2go:${VERSION_CODE}-noble"
+    build:
+      context: "."
+      dockerfile: "Dockerfile-noble"
